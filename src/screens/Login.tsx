@@ -1,16 +1,64 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import * as React from 'react';
+import { View, StyleSheet, ImageBackground, SafeAreaView, StatusBar } from 'react-native';
+import { Text, Button, useTheme } from 'react-native-paper';
 
-export default function Login({ navigation }: any) {
+export default function LoginScreen({ navigation }: any) {
+  const { colors } = useTheme();
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, [navigation]);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login Screen</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-    </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#2E7D32' }}>
+      <StatusBar backgroundColor="#2E7D32" barStyle="light-content" />
+      <ImageBackground
+        source={require('../assets/bg_image.jpeg')}
+        style={styles.background}
+      >
+        <Text style={styles.title}>Coco Scan</Text>
+        <Text style={styles.subtitle}>
+          Your assistant for analyzing coconut leaves.
+        </Text>
+        <Button
+          mode="contained"
+          style={styles.cta}
+          contentStyle={{ paddingVertical: 12 }}
+          onPress={() => navigation.navigate('Home')}
+        >
+          Start
+        </Button>
+      </ImageBackground>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  title: { fontSize: 20, fontWeight: 'bold' },
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 48,
+    fontWeight: 'bold',
+    color: '#f0fff0',
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: 'rgba(240,255,240,0.9)',
+    textAlign: 'center',
+    marginBottom: 40,
+    paddingHorizontal: 100,
+  },
+  cta: {
+    backgroundColor: '#2E7D32',
+    borderRadius: 30,
+    minWidth: 200,
+  },
 });
