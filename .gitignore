@@ -58,3 +58,15 @@ buck-out/
 *.jsbundle
 *.bundle
 .bundle
+*.csx
+
+# Android NDK / CMake build artifacts
+android/app/.cxx/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/build.ninja
+**/*.ninja
+**/*.txt
+**/*.json
+**/*.log
+**/*.iml
